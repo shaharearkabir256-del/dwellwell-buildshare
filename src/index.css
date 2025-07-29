@@ -249,3 +249,20 @@
     @apply text-white font-semibold;
   }
 }
+/* ==== ফাঁকা সাইড স্পেস রিমুভ ==== */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* horizontal scroll বন্ধ */
+}
+
+/* ==== Hero Section / HomeShare Pro alignment ==== */
+.hero-section {
+  padding-top: 0 !important;  /* উপরের gap মুছে ফেলা */
+  margin-top: 0 !important;
+}
+
+/* যদি HomeShare Pro টাইটেলের জন্য নির্দিষ্ট ক্লাস থাকে */
+.hero-title {
+  margin-top: 0 !important;   /* শিরোনাম একদম উপরে বসানো */
+}
