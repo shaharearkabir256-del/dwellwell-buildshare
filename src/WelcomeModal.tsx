@@ -1,47 +1,64 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const WelcomeModal: React.FC = () => {
+export default function WelcomeModal() {
   const [show, setShow] = useState(true);
+  const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    // মডাল আসার আগে fade animation শুরু
+    setTimeout(() => setFade(true), 50);
+  }, []);
+
+  const closeModal = () => {
+    setFade(false);
+    setTimeout(() => setShow(false), 300); // fade-out সময়
+  };
 
   if (!show) return null;
 
   return (
     <div style={{
       position: 'fixed',
-      top: 0, left: 0, right: 0, bottom: 0,
-      backgroundColor: 'rgba(0,0,0,0.5)',
+      inset: 0,
+      backgroundColor: fade ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: 9999,
+      zIndex: 99999,
+      transition: 'background-color 0.3s ease'
     }}>
       <div style={{
         background: 'white',
-        padding: '20px 30px',
-        borderRadius: '8px',
+        padding: '25px 30px',
+        borderRadius: '15px',
         textAlign: 'center',
-        maxWidth: '300px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.3)'
+        maxWidth: '320px',
+        boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+        transform: fade ? 'scale(1)' : 'scale(0.8)',
+        opacity: fade ? 1 : 0,
+        transition: 'all 0.3s ease'
       }}>
-        <h2>স্বাগতম!</h2>
-        <p>আমাদের ওয়েবসাইটে আসার জন্য ধন্যবাদ।</p>
+        <h2 style={{ marginBottom: '10px' }}>🎉 স্বাগতম!</h2>
+        <p style={{ marginBottom: '15px' }}>আমাদের ওয়েবসাইটে আসার জন্য ধন্যবাদ।</p>
         <button
-          onClick={() => setShow(false)}
+          onClick={closeModal}
           style={{
-            padding: '8px 16px',
-            backgroundColor: '#007BFF',
+            padding: '10px 18px',
+            background: 'linear-gradient(90deg, #007BFF, #00C4FF)',
             border: 'none',
             color: 'white',
-            borderRadius: '4px',
+            borderRadius: '25px',
             cursor: 'pointer',
-            fontSize: '16px'
+            fontSize: '15px',
+            fontWeight: 'bold',
+            transition: 'background 0.3s ease'
           }}
+          onMouseOver={(e) => (e.currentTarget.style.background = 'linear-gradient(90deg, #0056d2, #00a0cc)')}
+          onMouseOut={(e) => (e.currentTarget.style.background = 'linear-gradient(90deg, #007BFF, #00C4FF)')}
         >
-          বন্ধ করুন
+          শুরু করুন
         </button>
       </div>
     </div>
   );
-};
-
-export default WelcomeModal;
+}
