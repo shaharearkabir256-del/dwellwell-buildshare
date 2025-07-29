@@ -1,30 +1,37 @@
-export default function App() {
-  return (
-    <div className="font-sans">
-      
-      {/* Navbar */}
-      <div className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-          <h1 className="text-lg font-bold">HomeShare Pro</h1>
-          <button className="text-gray-700">
-            {/* মেনু আইকন */}
-            ☰
-          </button>
-        </div>
-      </div>
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Properties from "./pages/Properties";
+import Portfolio from "./pages/Portfolio";
+import HowItWorks from "./pages/HowItWorks";
+import ContactPage from "./pages/ContactPage";
+import NotFound from "./pages/NotFound";
 
-      {/* Hero Section */}
-      <section className="pt-20 px-4 text-center">
-        <h2 className="text-4xl font-bold text-gray-900">
-          Find or Build Your <span className="text-green-500">Perfect</span> Home
-        </h2>
-        <p className="mt-4 text-gray-600">
-          Connect with premium house sharing opportunities or create your dream home with our expert construction portfolio services.
-        </p>
-        <button className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-lg shadow-md">
-          Browse Homes
-        </button>
-      </section>
-    </div>
-  );
-}
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter basename={import.meta.env.PROD ? '/dwellwell-buildshare' : ''}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
