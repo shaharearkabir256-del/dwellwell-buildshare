@@ -219,3 +219,33 @@
     transform: translateX(0);
   }
 }
+/* ==== Navbar Mobile Fix ==== */
+@layer components {
+  .navbar {
+    @apply flex items-center justify-between px-4; /* মোবাইলে balanced padding */
+  }
+
+  .menu-icon {
+    @apply ml-auto relative pr-2; /* ডানপাশে ঠিকভাবে বসানো */
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      @apply px-2; /* ছোট স্ক্রিনে কম padding */
+    }
+    .menu-icon {
+      transform: scale(0.9); /* আইকন ছোট */
+    }
+  }
+
+  /* Home icon + text fix */
+  .navbar .logo {
+    @apply flex items-center gap-1 rounded-lg px-2 py-1;
+    background: rgba(255, 255, 255, 0.3); /* হালকা ব্যাকগ্রাউন্ড */
+    backdrop-filter: blur(5px);
+  }
+
+  .navbar .logo span {
+    @apply text-white font-semibold;
+  }
+}
