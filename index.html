@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script>
-      (function() {
-        if (sessionStorage.redirect) {
-          var redirect = sessionStorage.redirect;
-          delete sessionStorage.redirect;
-          history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dwellwell-buildshare</title>
     <meta name="description" content="Lovable Generated Project" />
     <meta name="author" content="Lovable" />
 
+    <!-- Social Media Preview -->
     <meta property="og:title" content="dwellwell-buildshare" />
     <meta property="og:description" content="Lovable Generated Project" />
     <meta property="og:type" content="website" />
@@ -25,11 +16,17 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- Favicon (optional) -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <script type="module" crossorigin src="/dwellwell-buildshare/assets/index-Cz9O2StR.js"></script>
     <link rel="stylesheet" crossorigin href="/dwellwell-buildshare/assets/index-CYJplcIO.css">
   </head>
 
   <body>
+    <!-- React App Mount Point -->
     <div id="root"></div>
+
+    <!-- Main Script -->
   </body>
 </html>
