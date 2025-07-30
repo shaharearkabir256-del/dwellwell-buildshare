@@ -3,7 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Properties from "./pages/Properties";
+import Portfolio from "./pages/Portfolio";
+import HowItWorks from "./pages/HowItWorks";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -15,7 +20,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter basename={import.meta.env.PROD ? '/dwellwell-buildshare' : ''}>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/contact" element={<ContactPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
