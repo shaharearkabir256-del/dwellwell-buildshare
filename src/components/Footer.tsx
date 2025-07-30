@@ -138,13 +138,13 @@ const Footer = () => {
             <p className="text-background/80 mb-4">
               Subscribe to our newsletter for the latest properties and construction updates.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-lg bg-background/10 border border-background/20 text-background placeholder-background/60 focus:outline-none focus:border-background/40"
+                className="flex-1 px-4 py-2 rounded-lg bg-background/10 border border-background/20 text-background placeholder-background/60 focus:outline-none focus:border-background/40 min-w-0"
               />
-              <button className="px-6 py-2 bg-gradient-primary text-white rounded-lg hover:opacity-90 transition-opacity">
+              <button className="px-6 py-2 bg-gradient-primary text-white rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap">
                 Subscribe
               </button>
             </div>
