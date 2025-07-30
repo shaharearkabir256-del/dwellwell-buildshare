@@ -29,14 +29,14 @@
   <body>
     <!-- This file is a fallback for GitHub Pages to handle client-side routing -->
     <script type="text/javascript">
-      // Immediately redirect to index.html with the current path and query
-      var pathSegmentsToKeep = 1;
+      // Redirect to index.html with the current path for GitHub Pages SPA routing
+      var pathSegmentsToKeep = 0;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-        '/?/' + 
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') + 
+        '/dwellwell-buildshare/' + 
+        '?/' + 
+        l.pathname.slice(1).replace(/&/g, '~and~') + 
         (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
       );
