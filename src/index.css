@@ -219,3 +219,72 @@
     transform: translateX(0);
   }
 }
+/* ==== Navbar Mobile Fix ==== */
+@layer components {
+  .navbar {
+    @apply flex items-center justify-between px-4; /* মোবাইলে balanced padding */
+  }
+
+  .menu-icon {
+    @apply ml-auto relative pr-2; /* ডানপাশে ঠিকভাবে বসানো */
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      @apply px-2; /* ছোট স্ক্রিনে কম padding */
+    }
+    .menu-icon {
+      transform: scale(0.9); /* আইকন ছোট */
+    }
+  }
+
+  /* Home icon + text fix */
+  .navbar .logo {
+    @apply flex items-center gap-1 rounded-lg px-2 py-1;
+    background: rgba(255, 255, 255, 0.3); /* হালকা ব্যাকগ্রাউন্ড */
+    backdrop-filter: blur(5px);
+  }
+
+  .navbar .logo span {
+    @apply text-white font-semibold;
+  }
+}
+/* ==== ফাঁকা সাইড স্পেস রিমুভ ==== */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* horizontal scroll বন্ধ */
+}
+
+/* ==== Hero Section / HomeShare Pro alignment ==== */
+.hero-section {
+  padding-top: 0 !important;  /* উপরের gap মুছে ফেলা */
+  margin-top: 0 !important;
+}
+
+/* যদি HomeShare Pro টাইটেলের জন্য নির্দিষ্ট ক্লাস থাকে */
+.hero-title {
+  margin-top: 0 !important;   /* শিরোনাম একদম উপরে বসানো */
+}
+/* সাইডে সাদা ফাঁকা স্পেস রিমুভ */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Navbar উপরে ফিক্স এবং background */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+/* Hero Section padding fix (Navbar এর নিচে gap) */
+.hero-section {
+  padding-top: 70px;
+}
