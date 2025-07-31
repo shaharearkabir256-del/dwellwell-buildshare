@@ -1,26 +1,27 @@
 import { Home, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     company: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Our Team', href: '#team' },
-      { name: 'Careers', href: '#careers' },
-      { name: 'Press', href: '#press' },
+      { name: 'About Us', href: '/about' },
+      { name: 'Our Team', href: '/team' },
+      { name: 'Careers', href: '/careers' },
+      { name: 'Press', href: '/press' },
     ],
     services: [
-      { name: 'House Sharing', href: '#properties' },
-      { name: 'Home Building', href: '#portfolio' },
-      { name: 'Property Management', href: '#management' },
-      { name: 'Consultation', href: '#consultation' },
+      { name: 'House Sharing', href: '/properties' },
+      { name: 'Home Building', href: '/portfolio' },
+      { name: 'Property Management', href: '/management' },
+      { name: 'Consultation', href: '/consultation' },
     ],
     support: [
-      { name: 'Help Center', href: '#help' },
-      { name: 'Contact Us', href: '#contact' },
-      { name: 'Privacy Policy', href: '#privacy' },
-      { name: 'Terms of Service', href: '#terms' },
+      { name: 'Help Center', href: '/help' },
+      { name: 'Contact Us', href: '/contact' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
     ]
   };
 
@@ -83,12 +84,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
+                  <Link
+                    to={link.href}
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -100,12 +101,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
+                  <Link
+                    to={link.href}
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -117,12 +118,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
+                  <Link
+                    to={link.href}
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -177,18 +178,18 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div className="flex space-x-6 text-sm">
-              <button
-                onClick={() => scrollToSection('#privacy')}
+              <Link
+                to="/privacy"
                 className="text-background/60 hover:text-background/80 transition-colors"
               >
                 Privacy Policy
-              </button>
-              <button
-                onClick={() => scrollToSection('#terms')}
+              </Link>
+              <Link
+                to="/terms"
                 className="text-background/60 hover:text-background/80 transition-colors"
               >
                 Terms of Service
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -9,6 +9,14 @@ import Properties from "./pages/Properties";
 import Portfolio from "./pages/Portfolio";
 import HowItWorks from "./pages/HowItWorks";
 import ContactPage from "./pages/ContactPage";
+import Team from "./pages/Team";
+import Careers from "./pages/Careers";
+import Press from "./pages/Press";
+import Management from "./pages/Management";
+import Consultation from "./pages/Consultation";
+import HelpCenter from "./pages/HelpCenter";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +34,14 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/press" element={<Press />} />
+          <Route path="/management" element={<Management />} />
+          <Route path="/consultation" element={<Consultation />} />
+          <Route path="/help" element={<HelpCenter />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
