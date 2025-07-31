@@ -32,7 +32,7 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             About{' '}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              HomeShare Pro
+              Property BD
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

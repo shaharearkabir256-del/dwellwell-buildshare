@@ -14,7 +14,7 @@ const Testimonials = () => {
       role: 'Property Owner',
       image: testimonial1,
       rating: 5,
-      text: 'HomeShare Pro made finding the perfect housemate effortless. The vetting process is thorough, and the platform is so user-friendly. I found an amazing tenant within two weeks!',
+      text: 'Property BD made finding the perfect housemate effortless. The vetting process is thorough, and the platform is so user-friendly. I found an amazing tenant within two weeks!',
       location: 'Seattle, WA'
     },
     {
@@ -32,7 +32,7 @@ const Testimonials = () => {
       role: 'House Sharer',
       image: testimonial1,
       rating: 5,
-      text: 'As a young professional, finding affordable housing in Seattle seemed impossible. HomeShare Pro connected me with an amazing house share that fits my budget and lifestyle perfectly.',
+      text: 'As a young professional, finding affordable housing in Seattle seemed impossible. Property BD connected me with an amazing house share that fits my budget and lifestyle perfectly.',
       location: 'Capitol Hill, Seattle'
     }
   ];
@@ -66,7 +66,7 @@ const Testimonials = () => {
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our satisfied customers 
-            have to say about their experience with HomeShare Pro.
+            have to say about their experience with Property BD.
           </p>
         </div>
 

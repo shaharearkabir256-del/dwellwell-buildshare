@@ -44,7 +44,7 @@ const HowItWorks = () => {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get started with HomeShare Pro in four simple steps. Whether you're looking 
+            Get started with Property BD in four simple steps. Whether you're looking 
             to share a home or build one, our process is designed to be seamless and efficient.
           </p>
         </div>

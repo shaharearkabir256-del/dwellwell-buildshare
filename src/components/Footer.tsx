@@ -50,7 +50,7 @@ const Footer = () => {
                 <Home className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                HomeShare Pro
+                Property BD
               </span>
             </div>
             
@@ -158,7 +158,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
             <p className="text-background/60 text-sm">
-              © {currentYear} HomeShare Pro. All rights reserved.
+              © {currentYear} Property BD. All rights reserved.
             </p>
 
             {/* Social Links */}
