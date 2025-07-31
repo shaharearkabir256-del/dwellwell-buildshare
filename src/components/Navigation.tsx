@@ -80,7 +80,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 glass-card backdrop-blur-md border-t border-white/10 animate-fade-in">
+          <div className="md:hidden absolute top-full left-0 right-0 z-50 glass-card backdrop-blur-md border-t border-white/10 animate-fade-in">
             <div className="p-4 space-y-4">
               {navItems.map((item) => (
                 <Link
