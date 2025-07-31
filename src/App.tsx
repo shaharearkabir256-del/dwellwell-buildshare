@@ -18,7 +18,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename={import.meta.env.PROD ? '/dwellwell-buildshare' : ''}>
+      <BrowserRouter basename={import.meta.env.VITE_GITHUB_PAGES ? '/dwellwell-buildshare' : ''}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

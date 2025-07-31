@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/dwellwell-buildshare/' : '/',
+  base: process.env.GITHUB_PAGES ? '/dwellwell-buildshare/' : '/',
   server: {
     host: "::",
     port: 8080,
