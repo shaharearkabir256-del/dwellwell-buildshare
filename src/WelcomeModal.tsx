@@ -5,130 +5,204 @@ export default function WelcomeAnimation() {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setPhase(1), 500);
-    const timer2 = setTimeout(() => setPhase(2), 2000);
-    const timer3 = setTimeout(() => setPhase(3), 3500);
-    const timer4 = setTimeout(() => setPhase(4), 5000);
-    const hideTimer = setTimeout(() => setShow(false), 6500);
+    const timers = [
+      setTimeout(() => setPhase(1), 500),   // Grid appears
+      setTimeout(() => setPhase(2), 1200),  // Buildings start rising
+      setTimeout(() => setPhase(3), 2500),  // Holographic elements
+      setTimeout(() => setPhase(4), 3800),  // Company name appears
+      setTimeout(() => setPhase(5), 5000),  // Final effects
+      setTimeout(() => setShow(false), 7000) // Hide animation
+    ];
 
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-      clearTimeout(timer4);
-      clearTimeout(hideTimer);
-    };
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden">
-      {/* Background particles */}
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+    <div className="fixed inset-0 z-50 bg-black overflow-hidden">
+      {/* Animated grid floor */}
+      <div 
+        className={`absolute bottom-0 left-0 right-0 h-1/2 transition-all duration-1000 ${
+          phase >= 1 ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          background: 'linear-gradient(0deg, rgba(0,255,255,0.1) 0%, transparent 100%)',
+          backgroundImage: `
+            linear-gradient(90deg, rgba(0,255,255,0.3) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(0,255,255,0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          transform: 'perspective(500px) rotateX(60deg)',
+          transformOrigin: 'bottom',
+        }}
+      />
+
+      {/* City skyline buildings */}
+      <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center space-x-1 md:space-x-2">
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-1 h-1 bg-primary rounded-full transition-all duration-1000 ${
-              phase >= 1 ? 'animate-pulse opacity-60' : 'opacity-0'
+            className={`bg-gradient-to-t from-primary/80 via-accent/60 to-primary/40 transition-all duration-1000 delay-${i * 100} ${
+              phase >= 2 ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              width: `${20 + Math.random() * 30}px`,
+              height: phase >= 2 ? `${80 + Math.random() * 120}px` : '0px',
+              transitionDelay: `${i * 150}ms`,
+              boxShadow: '0 0 20px rgba(0,255,255,0.5), inset 0 0 20px rgba(0,255,255,0.2)',
+              border: '1px solid rgba(0,255,255,0.3)',
+            }}
+          >
+            {/* Building windows */}
+            {phase >= 3 && (
+              <div className="w-full h-full relative">
+                {[...Array(Math.floor(Math.random() * 8) + 3)].map((_, j) => (
+                  <div
+                    key={j}
+                    className="absolute bg-cyan-400/60 animate-pulse"
+                    style={{
+                      width: '3px',
+                      height: '3px',
+                      left: `${20 + (j % 3) * 25}%`,
+                      top: `${15 + Math.floor(j / 3) * 20}%`,
+                      animationDelay: `${Math.random() * 2}s`,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute w-1 h-1 bg-cyan-400 rounded-full transition-all duration-2000 ${
+              phase >= 3 ? 'opacity-60 animate-pulse' : 'opacity-0'
             }`}
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
+              top: `${Math.random() * 80}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              boxShadow: '0 0 10px rgba(0,255,255,0.8)',
             }}
           />
         ))}
       </div>
 
-      {/* Gaming-style grid background */}
-      <div 
-        className={`absolute inset-0 opacity-20 transition-opacity duration-1000 ${
-          phase >= 1 ? 'opacity-20' : 'opacity-0'
-        }`}
-        style={{
-          backgroundImage: 'linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-        }}
-      />
-
-      {/* Main logo container */}
-      <div className="relative text-center">
-        {/* Outer glow ring */}
-        <div 
-          className={`absolute inset-0 rounded-full border-2 border-primary/50 transition-all duration-2000 ${
-            phase >= 2 ? 'scale-150 opacity-0' : 'scale-100 opacity-100'
-          }`}
-          style={{
-            width: '300px',
-            height: '300px',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-
-        {/* Property text */}
-        <div 
-          className={`transition-all duration-1000 ${
-            phase >= 1 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-75'
-          }`}
-        >
-          <h1 className="text-4xl md:text-8xl lg:text-9xl font-black tracking-wider mb-2 md:mb-4">
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">
-              PROPERTY
-            </span>
-          </h1>
-        </div>
-
-        {/* BD text with delay */}
-        <div 
-          className={`transition-all duration-1000 delay-500 ${
-            phase >= 2 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-75'
-          }`}
-        >
-          <h2 className="text-3xl md:text-7xl lg:text-8xl font-black tracking-widest">
-            <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent animate-pulse">
-              BD
-            </span>
-          </h2>
-        </div>
-
-        {/* Power-up effect lines */}
-        {phase >= 3 && (
-          <div className="absolute inset-0">
-            {[...Array(8)].map((_, i) => (
+      {/* Holographic interface elements */}
+      {phase >= 3 && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          {/* Circular HUD */}
+          <div className="relative">
+            <div className="w-80 h-80 md:w-96 md:h-96 border-2 border-cyan-400/50 rounded-full animate-spin-slow">
+              <div className="absolute inset-4 border border-cyan-400/30 rounded-full">
+                <div className="absolute inset-4 border border-cyan-400/20 rounded-full" />
+              </div>
+            </div>
+            
+            {/* Corner brackets */}
+            {[...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="absolute w-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse"
+                className="absolute w-8 h-8 border-cyan-400"
                 style={{
-                  height: '200%',
-                  left: '50%',
-                  top: '50%',
-                  transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
-                  transformOrigin: 'center',
-                  animationDelay: `${i * 0.1}s`,
+                  top: i < 2 ? '10px' : 'auto',
+                  bottom: i >= 2 ? '10px' : 'auto',
+                  left: i % 2 === 0 ? '10px' : 'auto',
+                  right: i % 2 === 1 ? '10px' : 'auto',
+                  borderWidth: `${i < 2 ? '2px' : '0'} ${i % 2 === 1 ? '2px' : '0'} ${i >= 2 ? '2px' : '0'} ${i % 2 === 0 ? '2px' : '0'}`,
                 }}
               />
             ))}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Final blast effect */}
-        {phase >= 4 && (
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 via-accent/30 to-primary/20 animate-ping" />
-        )}
+      {/* Company name with futuristic styling */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-center">
+          {/* Main logo */}
+          <div 
+            className={`transition-all duration-1500 ${
+              phase >= 4 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-75'
+            }`}
+          >
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-black tracking-wider mb-2 md:mb-4 relative">
+              <span 
+                className="bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent"
+                style={{
+                  textShadow: '0 0 30px rgba(0,255,255,0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(0,255,255,0.3))',
+                }}
+              >
+                PROPERTY
+              </span>
+              {/* Scanning line effect */}
+              {phase >= 4 && (
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent h-full animate-pulse opacity-70" />
+              )}
+            </h1>
+          </div>
+
+          <div 
+            className={`transition-all duration-1500 delay-300 ${
+              phase >= 4 ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-75'
+            }`}
+          >
+            <h2 className="text-3xl md:text-6xl lg:text-7xl font-black tracking-widest relative">
+              <span 
+                className="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                style={{
+                  textShadow: '0 0 30px rgba(0,255,255,0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(0,255,255,0.3))',
+                }}
+              >
+                BD
+              </span>
+            </h2>
+          </div>
+
+          {/* Subtitle */}
+          {phase >= 5 && (
+            <div className="mt-4 md:mt-8 animate-fade-in">
+              <p className="text-cyan-400/80 text-lg md:text-xl font-light tracking-wide">
+                NEXT GENERATION REAL ESTATE
+              </p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Bottom scanner line */}
-      <div 
-        className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent transition-all duration-2000 ${
-          phase >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}
-        style={{
-          animation: 'pulse 2s infinite',
-        }}
-      />
+      {/* Data streams */}
+      {phase >= 5 && (
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute h-full w-px bg-gradient-to-b from-transparent via-cyan-400/50 to-transparent animate-pulse"
+              style={{
+                left: `${15 + i * 15}%`,
+                animationDelay: `${i * 0.5}s`,
+                animationDuration: '3s',
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Status bar */}
+      {phase >= 2 && (
+        <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center text-cyan-400/60 text-xs md:text-sm font-mono">
+          <div>SYSTEM: ONLINE</div>
+          <div>PROPERTY BD v2.0</div>
+          <div>STATUS: READY</div>
+        </div>
+      )}
     </div>
   );
 }

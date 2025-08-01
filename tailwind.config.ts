@@ -141,6 +141,14 @@ export default {
 						opacity: '1',
 						transform: 'translateX(0)'
 					}
+				},
+				'spin-slow': {
+					from: {
+						transform: 'rotate(0deg)'
+					},
+					to: {
+						transform: 'rotate(360deg)'
+					}
 				}
 			},
 			animation: {
@@ -149,7 +157,8 @@ export default {
 				'fade-up': 'fade-up 0.8s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-in-left': 'slide-in-left 0.8s ease-out',
-				'slide-in-right': 'slide-in-right 0.8s ease-out'
+				'slide-in-right': 'slide-in-right 0.8s ease-out',
+				'spin-slow': 'spin-slow 8s linear infinite'
 			}
 		}
 	},
