@@ -14,7 +14,7 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -27,14 +27,55 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Message Sent Successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    try {
+      // Send to Telegram Bot
+      const telegramMessage = `
+🔔 নতুন কন্টাক্ট ফর্ম সাবমিশন
 
-    // Reset form
-    setFormData({ name: '', email: '', phone: '', message: '' });
+👤 নাম: ${formData.name}
+📧 ইমেইল: ${formData.email}
+📱 ফোন: ${formData.phone || 'প্রদান করা হয়নি'}
+
+📝 বার্তা:
+${formData.message}
+
+⏰ সময়: ${new Date().toLocaleString('bn-BD')}
+      `;
+
+      const telegramBotToken = '8239716336:AAH-rWjTcrZAfFEyaK_ZMtJxs2hp5uSzjis';
+      const chatId = '8239716336'; // Using bot ID as chat ID, you may need to update this
+      
+      const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: telegramMessage,
+          parse_mode: 'HTML'
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        
+        // Reset form
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending to Telegram:', error);
+      toast({
+        title: "Error Sending Message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Home, Building, Briefcase, Info, Phone } from 'lucide-react';
+import { Menu, X, Home, Building, Briefcase, Info, Phone, Search } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,6 +33,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
+    { path: '/search', label: 'Search', icon: Search },
     { path: '/properties', label: 'Properties', icon: Building },
     { path: '/portfolio', label: 'Portfolio', icon: Briefcase },
     { path: '/how-it-works', label: 'How It Works', icon: Info },
