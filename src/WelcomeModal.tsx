@@ -1,63 +1,81 @@
 import { useState, useEffect } from 'react';
 
-export default function WelcomeModal() {
+export default function WelcomeAnimation() {
+  const [currentMessage, setCurrentMessage] = useState(0);
   const [show, setShow] = useState(true);
-  const [fade, setFade] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const messages = [
+    {
+      title: "🏢 Property BD তে স্বাগতম",
+      subtitle: "বাংলাদেশের বিশ্বস্ত প্রপার্টি সেবা"
+    },
+    {
+      title: "🏠 আপনার স্বপ্নের বাড়ি",
+      subtitle: "Property BD এর সাথে খুঁজে নিন"
+    },
+    {
+      title: "🌟 গুণগত সেবা ও আস্থা",
+      subtitle: "Property BD - আপনার বিশ্বস্ত সাথী"
+    },
+    {
+      title: "🚀 আধুনিক প্রযুক্তি",
+      subtitle: "Property BD এর উন্নত সেবায়"
+    }
+  ];
 
   useEffect(() => {
-    // মডাল আসার আগে fade animation শুরু
-    setTimeout(() => setFade(true), 50);
-  }, []);
+    setIsVisible(true);
+    
+    const messageInterval = setInterval(() => {
+      setCurrentMessage((prev) => (prev + 1) % messages.length);
+    }, 3000);
 
-  const closeModal = () => {
-    setFade(false);
-    setTimeout(() => setShow(false), 300); // fade-out সময়
-  };
+    const hideTimer = setTimeout(() => {
+      setIsVisible(false);
+      setTimeout(() => setShow(false), 500);
+    }, 12000); // 4 messages × 3 seconds each
+
+    return () => {
+      clearInterval(messageInterval);
+      clearTimeout(hideTimer);
+    };
+  }, [messages.length]);
 
   if (!show) return null;
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      backgroundColor: fade ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 99999,
-      transition: 'background-color 0.3s ease'
-    }}>
-      <div style={{
-        background: 'white',
-        padding: '25px 30px',
-        borderRadius: '15px',
-        textAlign: 'center',
-        maxWidth: '320px',
-        boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
-        transform: fade ? 'scale(1)' : 'scale(0.8)',
-        opacity: fade ? 1 : 0,
-        transition: 'all 0.3s ease'
-      }}>
-        <h2 style={{ marginBottom: '10px' }}>🎉 স্বাগতম!</h2>
-        <p style={{ marginBottom: '15px' }}>আমাদের ওয়েবসাইটে আসার জন্য ধন্যবাদ।</p>
-        <button
-          onClick={closeModal}
-          style={{
-            padding: '10px 18px',
-            background: 'linear-gradient(90deg, #007BFF, #00C4FF)',
-            border: 'none',
-            color: 'white',
-            borderRadius: '25px',
-            cursor: 'pointer',
-            fontSize: '15px',
-            fontWeight: 'bold',
-            transition: 'background 0.3s ease'
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.background = 'linear-gradient(90deg, #0056d2, #00a0cc)')}
-          onMouseOut={(e) => (e.currentTarget.style.background = 'linear-gradient(90deg, #007BFF, #00C4FF)')}
-        >
-          শুরু করুন
-        </button>
+    <div 
+      className={`fixed inset-0 z-50 flex items-center justify-center pointer-events-none transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <div className={`text-center transform transition-all duration-700 ${
+        isVisible ? 'translate-y-0 scale-100' : 'translate-y-10 scale-95'
+      }`}>
+        <div className="bg-gradient-to-r from-primary/90 to-primary-foreground/90 backdrop-blur-md rounded-2xl px-8 py-6 shadow-2xl border border-white/20">
+          <div className={`transition-all duration-500 ${
+            currentMessage % 2 === 0 ? 'animate-fade-in' : 'animate-scale-in'
+          }`} key={currentMessage}>
+            <h2 className="text-2xl font-bold text-white mb-2 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+              {messages[currentMessage].title}
+            </h2>
+            <p className="text-white/90 text-lg font-medium">
+              {messages[currentMessage].subtitle}
+            </p>
+          </div>
+          
+          <div className="flex justify-center mt-4 space-x-2">
+            {messages.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentMessage ? 'bg-yellow-300 scale-125' : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
