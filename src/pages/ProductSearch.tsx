@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Search, Filter, MapPin, Bed, Bath, Square, Star } from 'lucide-react';
+import AnimatedBackground from '@/components/ui/animated-background';
 
 const ProductSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -76,9 +77,10 @@ const ProductSearch = () => {
   });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <AnimatedBackground variant="search" />
       <Navigation />
-      <div className="pt-20">
+      <div className="pt-20 relative z-10">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-primary">
           <div className="container mx-auto px-4">

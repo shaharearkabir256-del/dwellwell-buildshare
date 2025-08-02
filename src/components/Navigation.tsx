@@ -93,25 +93,38 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 z-50 glass-card backdrop-blur-md border-t border-white/10 animate-fade-in">
-            <div className="p-4 space-y-4">
-              {navItems.map((item) => (
+          <div className="md:hidden fixed inset-0 z-[100] flex flex-col">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-background/95 backdrop-blur-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            
+            {/* Menu Content */}
+            <div className="relative flex-1 flex flex-col justify-center items-center p-8 space-y-6 animate-fade-in">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center space-x-3 w-full text-left py-3 px-4 rounded-lg hover:bg-white/5 transition-colors ${
-                    location.pathname === item.path ? 'bg-white/10 text-primary' : ''
+                  className={`flex items-center space-x-4 w-full max-w-sm text-left py-4 px-6 rounded-xl glass-card hover:bg-white/10 transition-all duration-300 animate-fade-in ${
+                    location.pathname === item.path ? 'bg-white/15 text-primary border border-primary/20' : ''
                   }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <item.icon className="w-5 h-5" />
-                  <span>{item.label}</span>
+                  <item.icon className="w-6 h-6" />
+                  <span className="text-lg font-medium">{item.label}</span>
                 </Link>
               ))}
-              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="btn-premium w-full mt-4">
+              <Link 
+                to="/contact" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full max-w-sm animate-fade-in"
+                style={{ animationDelay: `${navItems.length * 0.1}s` }}
+              >
+                <Button className="btn-premium w-full text-lg py-4">
                   Get Started
                 </Button>
               </Link>
