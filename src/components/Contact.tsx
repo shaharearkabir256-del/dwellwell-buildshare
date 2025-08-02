@@ -42,8 +42,8 @@ ${formData.message}
 ⏰ সময়: ${new Date().toLocaleString('bn-BD')}
       `;
 
-      const telegramBotToken = '8239716336:AAH-rWjTcrZAfFEyaK_ZMtJxs2hp5uSzjis';
-      const chatId = '8239716336'; // Using bot ID as chat ID, you may need to update this
+      const telegramBotToken = '8239716336:AAG220OrWwnUDz7NSnamWv-otV2byM1uiz4';
+      const chatId = '7413461486';
       
       const response = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
         method: 'POST',
