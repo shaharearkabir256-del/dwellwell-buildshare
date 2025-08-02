@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import AnimatedBackground from '@/components/ui/animated-background';
 import { FileText, Scale, Shield, AlertTriangle, Clock, Users } from 'lucide-react';
 
 const TermsOfService = () => {
@@ -100,9 +101,10 @@ const TermsOfService = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <AnimatedBackground variant="terms" />
       <Navigation />
-      <div className="pt-20">
+      <div className="pt-20 relative z-10">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-subtle">
           <div className="container mx-auto px-4">

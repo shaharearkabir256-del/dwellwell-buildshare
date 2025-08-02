@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import AnimatedBackground from '@/components/ui/animated-background';
 import { Shield, Clock, Wrench, Users, CheckCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -88,9 +89,10 @@ const Management = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <AnimatedBackground variant="management" />
       <Navigation />
-      <div className="pt-20">
+      <div className="pt-20 relative z-10">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-subtle">
           <div className="container mx-auto px-4">

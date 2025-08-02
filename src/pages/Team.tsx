@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import AnimatedBackground from '@/components/ui/animated-background';
 import { Users, Award, Heart, Target } from 'lucide-react';
 
 const Team = () => {
@@ -54,9 +55,10 @@ const Team = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <AnimatedBackground variant="team" />
       <Navigation />
-      <div className="pt-20">
+      <div className="pt-20 relative z-10">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-subtle">
           <div className="container mx-auto px-4">
