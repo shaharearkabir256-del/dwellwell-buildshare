@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface AnimatedBackgroundProps {
-  variant?: 'home' | 'properties' | 'contact' | 'search' | 'portfolio' | 'about' | 'howitworks' | 'careers' | 'consultation' | 'help' | 'management' | 'team' | 'press' | 'privacy' | 'terms';
+  variant?: 'home' | 'properties' | 'contact' | 'search' | 'portfolio' | 'about' | 'howitworks' | 'careers' | 'consultation' | 'help' | 'management' | 'team' | 'press' | 'privacy' | 'terms' | 'product' | 'services';
   className?: string;
 }
 
@@ -614,6 +614,90 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
                   }}
                 >
                   §
+                </div>
+              ))}
+            </div>
+          </>
+        );
+
+      case 'product':
+        return (
+          <>
+            {/* Product boxes */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute bg-gradient-to-br from-primary/8 to-accent/5 rounded-lg"
+                  style={{
+                    width: `${30 + i * 3}px`,
+                    height: `${25 + i * 2}px`,
+                    left: `${8 + i * 8}%`,
+                    top: `${20 + (i % 4) * 20}%`,
+                    animation: `product-showcase ${3 + i * 0.2}s ease-in-out infinite`,
+                    animationDelay: `${i * 0.3}s`,
+                  }}
+                />
+              ))}
+            </div>
+            
+            {/* Shopping cart icons */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute text-primary/15 text-xl"
+                  style={{
+                    left: `${Math.random() * 85}%`,
+                    top: `${Math.random() * 85}%`,
+                    animation: `cart-roll ${4 + Math.random() * 2}s ease-in-out infinite`,
+                    animationDelay: `${Math.random() * 3}s`,
+                  }}
+                >
+                  🛒
+                </div>
+              ))}
+            </div>
+          </>
+        );
+
+      case 'services':
+        return (
+          <>
+            {/* Service gears */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-12 h-12 border-2 border-primary/20 rounded-full flex items-center justify-center"
+                  style={{
+                    left: `${15 + i * 12}%`,
+                    top: `${25 + (i % 3) * 25}%`,
+                    animation: `service-rotate ${5 + i * 0.5}s linear infinite`,
+                    animationDelay: `${i * 0.4}s`,
+                  }}
+                >
+                  <div className="w-6 h-6 border border-accent/30 rounded-full">
+                    <div className="absolute inset-1 border border-primary/20 rounded-full" />
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Support icons */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(10)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute text-accent/15 text-lg"
+                  style={{
+                    left: `${Math.random() * 90}%`,
+                    top: `${Math.random() * 90}%`,
+                    animation: `support-float ${3 + Math.random() * 2}s ease-in-out infinite`,
+                    animationDelay: `${Math.random() * 3}s`,
+                  }}
+                >
+                  🛠️
                 </div>
               ))}
             </div>

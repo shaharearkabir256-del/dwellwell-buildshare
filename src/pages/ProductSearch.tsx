@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import AnimatedBackground from '@/components/ui/animated-background';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Search, Filter, MapPin, Bed, Bath, Square, Star } from 'lucide-react';
-import AnimatedBackground from '@/components/ui/animated-background';
+import { MapPin, Bed, Bath, Square, Star, Search } from 'lucide-react';
 
 const ProductSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,62 +18,62 @@ const ProductSearch = () => {
   const properties = [
     {
       id: 1,
-      title: 'Modern Apartment in Gulshan',
-      price: '৳85,00,000',
-      location: 'Gulshan, Dhaka',
+      title: "Modern Apartment in Gulshan",
+      location: "Gulshan, Dhaka",
+      price: "৳85,00,000",
       bedrooms: 3,
       bathrooms: 2,
-      area: '1200 sqft',
+      area: "1200 sqft",
+      type: "apartment",
       rating: 4.8,
-      image: '/placeholder.svg',
-      type: 'Apartment',
-      description: 'Luxury apartment with modern amenities and city view'
+      image: `https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=500&h=300&fit=crop`
     },
     {
       id: 2,
-      title: 'Family House in Dhanmondi',
-      price: '৳1,20,00,000',
-      location: 'Dhanmondi, Dhaka',
-      bedrooms: 4,
-      bathrooms: 3,
-      area: '1800 sqft',
+      title: "Luxury Villa in Uttara",
+      location: "Uttara, Dhaka",
+      price: "৳2,50,00,000",
+      bedrooms: 5,
+      bathrooms: 4,
+      area: "3500 sqft",
+      type: "villa",
       rating: 4.9,
-      image: '/placeholder.svg',
-      type: 'House',
-      description: 'Spacious family house with garden and parking'
+      image: `https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500&h=300&fit=crop`
     },
     {
       id: 3,
-      title: 'Luxury Villa in Uttara',
-      price: '৳2,50,00,000',
-      location: 'Uttara, Dhaka',
-      bedrooms: 5,
-      bathrooms: 4,
-      area: '2500 sqft',
-      rating: 4.7,
-      image: '/placeholder.svg',
-      type: 'Villa',
-      description: 'Premium villa with swimming pool and gym'
+      title: "Commercial Space in Dhanmondi",
+      location: "Dhanmondi, Dhaka",
+      price: "৳1,20,00,000",
+      bedrooms: 0,
+      bathrooms: 2,
+      area: "2000 sqft",
+      type: "commercial",
+      rating: 4.6,
+      image: `https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=500&h=300&fit=crop`
     },
     {
       id: 4,
-      title: 'Commercial Space in Motijheel',
-      price: '৳95,00,000',
-      location: 'Motijheel, Dhaka',
+      title: "Residential Plot in Bashundhara",
+      location: "Bashundhara, Dhaka",
+      price: "৳95,00,000",
       bedrooms: 0,
-      bathrooms: 2,
-      area: '800 sqft',
-      rating: 4.5,
-      image: '/placeholder.svg',
-      type: 'Commercial',
-      description: 'Prime commercial space for business'
+      bathrooms: 0,
+      area: "5 Katha",
+      type: "land",
+      rating: 4.7,
+      image: `https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=300&fit=crop`
     }
   ];
 
+  // Filter properties based on search criteria
   const filteredProperties = properties.filter(property => {
-    const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         property.location.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesType = !propertyType || property.type === propertyType;
+    const matchesSearch = searchQuery === '' || 
+      property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      property.location.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesType = propertyType === '' || property.type === propertyType;
+    
     return matchesSearch && matchesType;
   });
 
@@ -80,171 +81,149 @@ const ProductSearch = () => {
     <div className="min-h-screen relative">
       <AnimatedBackground variant="search" />
       <Navigation />
-      <div className="pt-20 relative z-10">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-primary">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10 animate-fade-up">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Find Your Perfect{' '}
-                <span className="text-yellow-300">Property</span>
-              </h1>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto">
-                Search through thousands of properties and find your dream home or investment opportunity
-              </p>
-            </div>
-
-            {/* Search Bar */}
-            <div className="max-w-4xl mx-auto animate-slide-up">
-              <div className="glass-card p-6 rounded-2xl">
-                <div className="grid md:grid-cols-4 gap-4">
-                  <div className="md:col-span-2">
-                    <div className="relative">
-                      <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                      <Input
-                        placeholder="Search by location or property name..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <select
-                      value={propertyType}
-                      onChange={(e) => setPropertyType(e.target.value)}
-                      className="w-full px-3 py-2 border border-border rounded-md bg-background"
-                    >
-                      <option value="">All Types</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="House">House</option>
-                      <option value="Villa">Villa</option>
-                      <option value="Commercial">Commercial</option>
-                    </select>
-                  </div>
-                  <div>
-                    <select
-                      value={priceRange}
-                      onChange={(e) => setPriceRange(e.target.value)}
-                      className="w-full px-3 py-2 border border-border rounded-md bg-background"
-                    >
-                      <option value="">Price Range</option>
-                      <option value="0-50">৳0 - ৳50 Lac</option>
-                      <option value="50-100">৳50 - ৳100 Lac</option>
-                      <option value="100-200">৳100 - ৳200 Lac</option>
-                      <option value="200+">৳200+ Lac</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mt-4">
-                  <p className="text-sm text-muted-foreground">
-                    {filteredProperties.length} properties found
-                  </p>
-                  <Button variant="outline" size="sm">
-                    <Filter className="w-4 h-4 mr-2" />
-                    More Filters
-                  </Button>
-                </div>
-              </div>
-            </div>
+      
+      <main className="pt-32 pb-20 px-4">
+        <div className="container mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+              Property Search
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Find your perfect property with our advanced search tools
+            </p>
           </div>
-        </section>
 
-        {/* Properties Grid */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProperties.map((property, index) => (
-                <Card 
-                  key={property.id} 
-                  className="group hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <img
-                      src={property.image}
+          {/* Search Filters */}
+          <Card className="glass-card mb-12">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Search className="w-5 h-5" />
+                Search Properties
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Input
+                  placeholder="Search by location or property name..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="md:col-span-2"
+                />
+                <Select value={propertyType} onValueChange={setPropertyType}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Property Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">All Types</SelectItem>
+                    <SelectItem value="apartment">Apartment</SelectItem>
+                    <SelectItem value="villa">Villa</SelectItem>
+                    <SelectItem value="commercial">Commercial</SelectItem>
+                    <SelectItem value="land">Land</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={priceRange} onValueChange={setPriceRange}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Price Range" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">All Prices</SelectItem>
+                    <SelectItem value="0-50">৳0 - ৳50 Lac</SelectItem>
+                    <SelectItem value="50-100">৳50 Lac - ৳1 Cr</SelectItem>
+                    <SelectItem value="100-200">৳1 Cr - ৳2 Cr</SelectItem>
+                    <SelectItem value="200+">৳2 Cr+</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Results */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold mb-4">
+              {filteredProperties.length} Properties Found
+            </h2>
+          </div>
+
+          {/* Property Grid */}
+          {filteredProperties.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProperties.map((property) => (
+                <Card key={property.id} className="glass-card hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                  <div className="relative">
+                    <img 
+                      src={property.image} 
                       alt={property.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Badge className="absolute top-4 left-4 bg-primary text-white">
-                      {property.type}
+                    <Badge className="absolute top-4 right-4 bg-primary/90">
+                      {property.type.charAt(0).toUpperCase() + property.type.slice(1)}
                     </Badge>
-                    <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/70 rounded-full px-2 py-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-white text-sm">{property.rating}</span>
-                    </div>
                   </div>
-
-                  <CardHeader>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {property.title}
-                    </CardTitle>
-                    <CardDescription className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {property.location}
-                    </CardDescription>
-                  </CardHeader>
-
-                  <CardContent>
-                    <div className="space-y-4">
-                      <p className="text-sm text-muted-foreground">
-                        {property.description}
-                      </p>
-                      
-                      <div className="flex justify-between items-center text-sm">
-                        {property.bedrooms > 0 && (
-                          <div className="flex items-center">
-                            <Bed className="w-4 h-4 mr-1" />
-                            {property.bedrooms} Bed
-                          </div>
-                        )}
-                        <div className="flex items-center">
-                          <Bath className="w-4 h-4 mr-1" />
-                          {property.bathrooms} Bath
-                        </div>
-                        <div className="flex items-center">
-                          <Square className="w-4 h-4 mr-1" />
-                          {property.area}
-                        </div>
-                      </div>
-
-                      <div className="flex justify-between items-center pt-4 border-t">
-                        <span className="text-2xl font-bold text-primary">
-                          {property.price}
-                        </span>
-                        <Button size="sm" className="btn-premium">
-                          View Details
-                        </Button>
-                      </div>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 text-yellow-500 mb-2">
+                      <Star className="w-4 h-4 fill-current" />
+                      <span className="text-sm font-medium">{property.rating}</span>
                     </div>
+                    <h3 className="text-xl font-bold mb-2">{property.title}</h3>
+                    <div className="flex items-center gap-1 text-muted-foreground mb-4">
+                      <MapPin className="w-4 h-4" />
+                      <span className="text-sm">{property.location}</span>
+                    </div>
+                    <div className="text-2xl font-bold text-primary mb-4">
+                      {property.price}
+                    </div>
+                    {property.bedrooms > 0 && (
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                        <div className="flex items-center gap-1">
+                          <Bed className="w-4 h-4" />
+                          <span>{property.bedrooms} Beds</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Bath className="w-4 h-4" />
+                          <span>{property.bathrooms} Baths</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Square className="w-4 h-4" />
+                          <span>{property.area}</span>
+                        </div>
+                      </div>
+                    )}
+                    {property.type === 'land' && (
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
+                        <Square className="w-4 h-4" />
+                        <span>Area: {property.area}</span>
+                      </div>
+                    )}
+                    <Button className="w-full btn-premium">
+                      View Details
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
-
-            {filteredProperties.length === 0 && (
-              <div className="text-center py-20">
-                <div className="w-24 h-24 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center">
-                  <Search className="w-12 h-12 text-muted-foreground" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">No Properties Found</h3>
-                <p className="text-muted-foreground mb-8">
-                  Try adjusting your search criteria or browse all properties
-                </p>
-                <Button 
-                  onClick={() => {
-                    setSearchQuery('');
-                    setPropertyType('');
-                    setPriceRange('');
-                  }}
-                >
-                  Clear Filters
-                </Button>
-              </div>
-            )}
-          </div>
-        </section>
-      </div>
+          ) : (
+            <div className="text-center py-20">
+              <div className="text-6xl mb-4">🏠</div>
+              <h3 className="text-2xl font-bold mb-4">No Properties Found</h3>
+              <p className="text-muted-foreground mb-6">
+                Try adjusting your search criteria to find more properties.
+              </p>
+              <Button 
+                onClick={() => {
+                  setSearchQuery('');
+                  setPropertyType('');
+                  setPriceRange('');
+                }}
+                className="btn-premium"
+              >
+                Clear Filters
+              </Button>
+            </div>
+          )}
+        </div>
+      </main>
+      
       <Footer />
     </div>
   );
