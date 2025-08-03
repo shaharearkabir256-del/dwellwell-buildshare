@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface AnimatedBackgroundProps {
-  variant?: 'home' | 'properties' | 'contact' | 'search' | 'portfolio' | 'about' | 'howitworks' | 'careers' | 'consultation' | 'help' | 'management' | 'team' | 'press' | 'privacy' | 'terms' | 'product' | 'services';
+  variant?: 'home' | 'properties' | 'contact' | 'search' | 'portfolio' | 'about' | 'howitworks' | 'careers' | 'consultation' | 'help' | 'management' | 'team' | 'press' | 'privacy' | 'terms' | 'product' | 'services' | 'commercial' | 'investment';
   className?: string;
 }
 
@@ -699,6 +699,52 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
                 >
                   🛠️
                 </div>
+              ))}
+            </div>
+          </>
+        );
+
+      case 'commercial':
+        return (
+          <>
+            {/* Office buildings */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(10)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute bg-gradient-to-t from-primary/10 to-accent/5"
+                  style={{
+                    width: `${25 + i * 4}px`,
+                    height: `${60 + i * 8}px`,
+                    left: `${10 + i * 9}%`,
+                    top: `${40 + (i % 3) * 15}%`,
+                    animation: `building-grow ${3 + i * 0.3}s ease-in-out infinite`,
+                    animationDelay: `${i * 0.4}s`,
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        );
+
+      case 'investment':
+        return (
+          <>
+            {/* Growth charts */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute bg-gradient-to-t from-accent/10 to-primary/5"
+                  style={{
+                    width: '4px',
+                    height: `${30 + i * 10}px`,
+                    left: `${20 + i * 10}%`,
+                    bottom: '30%',
+                    animation: `investment-grow ${2 + i * 0.2}s ease-out infinite`,
+                    animationDelay: `${i * 0.3}s`,
+                  }}
+                />
               ))}
             </div>
           </>
