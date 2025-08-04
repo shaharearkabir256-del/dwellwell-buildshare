@@ -1,8 +1,4 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import AnimatedBackground from '@/components/ui/animated-background';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import ProductTemplate from '@/components/ProductTemplate';
 import { MapPin, Ruler, TreePine } from 'lucide-react';
 
 const PlotsForSale = () => {
@@ -24,50 +20,44 @@ const PlotsForSale = () => {
     }
   ];
 
+  const sampleProducts = [
+    {
+      id: "1",
+      title: "Green Valley Plot",
+      description: "Premium residential plot in peaceful environment",
+      price: "₹25,00,000",
+      location: "Green Valley, Sector 12",
+      area: "2400 sq ft",
+      type: "Residential Plot",
+      image: "https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["Corner Plot", "Park Facing", "Wide Road"],
+      status: "available" as const
+    },
+    {
+      id: "2",
+      title: "Sunrise Heights Plot",
+      description: "Modern residential plot with all amenities",
+      price: "₹32,00,000",
+      location: "Sunrise Heights, Phase 2",
+      area: "3000 sq ft",
+      type: "Residential Plot",
+      image: "https://images.unsplash.com/photo-1460574283810-2aab119d8511?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      features: ["Gated Community", "24/7 Security", "Underground Utilities"],
+      status: "available" as const
+    }
+  ];
+
   return (
-    <div className="min-h-screen relative">
-      <AnimatedBackground variant="product" />
-      <Navigation />
-      
-      <main className="pt-32 pb-20 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              Residential Plots for Sale
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Find your perfect plot to build your dream home in prime residential locations
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {features.map((feature, index) => (
-              <Card key={index} className="glass-card text-center">
-                <CardHeader>
-                  <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <CardTitle>{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Card className="glass-card p-8 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4">Ready to Find Your Plot?</h3>
-              <p className="text-muted-foreground mb-6">
-                Contact us to explore available residential plots in your preferred location
-              </p>
-              <Button className="btn-premium">View Available Plots</Button>
-            </Card>
-          </div>
-        </div>
-      </main>
-      
-      <Footer />
-    </div>
+    <ProductTemplate
+      pageTitle="Residential Plots for Sale"
+      pageDescription="Find your perfect plot to build your dream home in prime residential locations"
+      backgroundVariant="product"
+      features={features}
+      products={sampleProducts}
+      ctaTitle="Ready to Find Your Plot?"
+      ctaDescription="Contact us to explore available residential plots in your preferred location"
+      ctaButtonText="View Available Plots"
+    />
   );
 };
 
