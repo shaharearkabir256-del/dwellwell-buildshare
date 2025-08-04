@@ -48,6 +48,7 @@ import PropertyMarketing from "./pages/services/real-estate-support/PropertyMark
 import InteriorDesignDecoration from "./pages/services/real-estate-support/InteriorDesignDecoration";
 import RealEstateConsultancy from "./pages/services/real-estate-support/RealEstateConsultancy";
 import ConstructionServices from "./pages/services/real-estate-support/ConstructionServices";
+import ProductDetail from "./pages/ProductDetail";
 
 const queryClient = new QueryClient();
 
@@ -111,6 +112,9 @@ const App = () => (
           <Route path="/services/real-estate-services-support/interior-design-decoration" element={<InteriorDesignDecoration />} />
           <Route path="/services/real-estate-services-support/real-estate-consultancy" element={<RealEstateConsultancy />} />
           <Route path="/services/real-estate-services-support/construction-services" element={<ConstructionServices />} />
+          
+          {/* Product Detail Route */}
+          <Route path="/product-detail/:id" element={<ProductDetail />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

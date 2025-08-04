@@ -139,7 +139,10 @@ const ProductTemplate = ({
                         ))}
                       </div>
                       
-                      <Button className="w-full btn-premium">
+                      <Button 
+                        className="w-full btn-premium"
+                        onClick={() => window.location.href = `/product-detail/${product.id}`}
+                      >
                         View Details
                       </Button>
                     </CardContent>
