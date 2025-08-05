@@ -39,7 +39,7 @@ const userSessions = new Map<number, {
 }>();
 
 const TELEGRAM_BOT_TOKEN = Deno.env.get('TELEGRAM_BOT_TOKEN');
-const AUTHORIZED_CHAT_ID = 300572399; // Your chat ID
+const AUTHORIZED_CHAT_ID = 7413461486; // Your chat ID
 
 serve(async (req) => {
   // Handle CORS preflight requests
