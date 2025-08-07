@@ -2,7 +2,7 @@
 const TELEGRAM_BOT_TOKEN = '8229133802:AAEQ7CoTGYYYjgCXHdRxZBtcLXqZA2JsWqs';
 
 // Replace with your actual Vercel deployment URL
-const WEBHOOK_URL = 'https://real-estate-bot-amber.vercel.app/api/telegram-webhook';
+const WEBHOOK_URL = 'https://propertybd.vercel.app/api/telegram-webhook';
 
 async function setupWebhook() {
   try {

@@ -1,7 +1,7 @@
 // Auto setup for Telegram webhook with proper URLs
 const TELEGRAM_BOT_TOKEN = '8229133802:AAEQ7CoTGYYYjgCXHdRxZBtcLXqZA2JsWqs';
 const AUTHORIZED_CHAT_ID = 7413461486;
-const WEBHOOK_URL = 'https://real-estate-bot-amber.vercel.app/api/telegram-webhook';
+const WEBHOOK_URL = 'https://propertybd.vercel.app/api/telegram-webhook';
 
 console.log('🤖 Telegram Bot Configuration:');
 console.log('Bot Token:', TELEGRAM_BOT_TOKEN);

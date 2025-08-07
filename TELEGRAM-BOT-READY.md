@@ -5,8 +5,8 @@
 ### 🔧 Configuration:
 - **Bot Token:** `8229133802:AAEQ7CoTGYYYjgCXHdRxZBtcLXqZA2JsWqs`
 - **Authorized Chat ID:** `7413461486`
-- **Website URL:** `https://real-estate-bot-amber.vercel.app`
-- **Webhook URL:** `https://real-estate-bot-amber.vercel.app/api/telegram-webhook`
+- **Website URL:** `https://propertybd.vercel.app`
+- **Webhook URL:** `https://propertybd.vercel.app/api/telegram-webhook`
 
 ### 🚀 How to Deploy:
 
