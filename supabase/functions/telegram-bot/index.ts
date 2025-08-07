@@ -47,6 +47,15 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Validate bot token
+  if (!TELEGRAM_BOT_TOKEN) {
+    console.error('TELEGRAM_BOT_TOKEN is not configured');
+    return new Response('Bot token not configured', { 
+      status: 500, 
+      headers: corsHeaders 
+    });
+  }
+
   try {
     if (req.method === 'POST') {
       const update: TelegramUpdate = await req.json();
@@ -223,6 +232,13 @@ async function handleMessage(message: TelegramMessage) {
 
 async function sendMessage(chatId: number, text: string) {
   try {
+    if (!TELEGRAM_BOT_TOKEN) {
+      console.error('Bot token not available for sending message');
+      return;
+    }
+
+    console.log(`Sending message to chat ${chatId}: ${text.substring(0, 50)}...`);
+    
     const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: {
@@ -235,11 +251,17 @@ async function sendMessage(chatId: number, text: string) {
       }),
     });
 
+    const responseData = await response.text();
+    
     if (!response.ok) {
-      console.error('Failed to send message:', await response.text());
+      console.error('Failed to send message:', response.status, responseData);
+      throw new Error(`Telegram API error: ${response.status} - ${responseData}`);
+    } else {
+      console.log('Message sent successfully');
     }
   } catch (error) {
     console.error('Error sending message:', error);
+    throw error;
   }
 }
 
