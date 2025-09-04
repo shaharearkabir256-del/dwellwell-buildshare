@@ -6,7 +6,7 @@
   },
   "env": {
     "GITHUB_TOKEN": "ghp_your_github_token_here",
-    "GITHUB_REPO": "username/real-estate-bot"
+    "GITHUB_REPO": "propertybd/propertybd"
   },
   "rewrites": [
     {

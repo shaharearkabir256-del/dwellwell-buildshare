@@ -6,6 +6,12 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
+  
+  // Handle test requests for status checking
+  if (req.method === 'POST' && req.body?.test) {
+    return res.status(200).json({ status: 'ok', message: 'Webhook is working' });
+  }
+  
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const TELEGRAM_BOT_TOKEN = '8229133802:AAEQ7CoTGYYYjgCXHdRxZBtcLXqZA2JsWqs';
