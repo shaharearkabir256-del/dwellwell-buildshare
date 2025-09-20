@@ -28,8 +28,8 @@ const useDebounce = (value: string, delay: number) => {
 
 const ProductSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [priceRange, setPriceRange] = useState('');
-  const [propertyType, setPropertyType] = useState('');
+  const [priceRange, setPriceRange] = useState('all');
+  const [propertyType, setPropertyType] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
   
   // Debounce search query for better performance
@@ -126,11 +126,11 @@ const ProductSearch = () => {
         property.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
         property.location.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
       
-      const matchesType = propertyType === '' || property.type === propertyType;
+      const matchesType = propertyType === '' || propertyType === 'all' || property.type === propertyType;
       
       // Price range filtering
       let matchesPrice = true;
-      if (priceRange) {
+      if (priceRange && priceRange !== 'all') {
         const price = property.priceValue;
         switch (priceRange) {
           case '0-50':
@@ -161,8 +161,8 @@ const ProductSearch = () => {
 
   const clearFilters = () => {
     setSearchQuery('');
-    setPropertyType('');
-    setPriceRange('');
+    setPropertyType('all');
+    setPriceRange('all');
   };
 
   return (
@@ -212,7 +212,7 @@ const ProductSearch = () => {
                     <SelectValue placeholder="প্রোপার্টির ধরন" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">সকল ধরনের</SelectItem>
+                    <SelectItem value="all">সকল ধরনের</SelectItem>
                     <SelectItem value="apartment">অ্যাপার্টমেন্ট</SelectItem>
                     <SelectItem value="villa">ভিলা</SelectItem>
                     <SelectItem value="commercial">কমার্শিয়াল</SelectItem>
@@ -225,7 +225,7 @@ const ProductSearch = () => {
                     <SelectValue placeholder="মূল্য পরিসীমা" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">সকল মূল্য</SelectItem>
+                    <SelectItem value="all">সকল মূল্য</SelectItem>
                     <SelectItem value="0-50">৳০ - ৳৫০ লাখ</SelectItem>
                     <SelectItem value="50-100">৳৫০ লাখ - ৳১ কোটি</SelectItem>
                     <SelectItem value="100-200">৳১ কোটি - ৳২ কোটি</SelectItem>
@@ -234,7 +234,7 @@ const ProductSearch = () => {
                 </Select>
               </div>
               
-              {(searchQuery || propertyType || priceRange) && (
+              {(searchQuery || (propertyType && propertyType !== 'all') || (priceRange && priceRange !== 'all')) && (
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Filter className="w-4 h-4" />
