@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Bed, Bath, Square, Star, Search, Filter, Loader2 } from 'lucide-react';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 // Custom hook for debouncing
 const useDebounce = (value: string, delay: number) => {
@@ -31,6 +32,7 @@ const ProductSearch = () => {
   const [priceRange, setPriceRange] = useState('all');
   const [propertyType, setPropertyType] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
   
   // Debounce search query for better performance
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
@@ -175,10 +177,10 @@ const ProductSearch = () => {
           {/* Header with improved animations */}
           <div className="text-center mb-12 animate-fade-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              প্রোপার্টি খুঁজুন
+              {t('search.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              আমাদের উন্নত সার্চ টুল দিয়ে আপনার পছন্দের প্রোপার্টি খুঁজে নিন
+              {t('search.subtitle')}
             </p>
           </div>
 
@@ -189,10 +191,10 @@ const ProductSearch = () => {
                 <div className="p-2 rounded-lg bg-gradient-primary text-white">
                   <Search className="w-5 h-5" />
                 </div>
-                সার্চ ফিল্টার
+                {t('search.filters')}
               </CardTitle>
               <CardDescription>
-                প্রোপার্টি খুঁজতে নিচের ফিল্টারগুলো ব্যবহার করুন
+                {t('search.filters.description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -200,7 +202,7 @@ const ProductSearch = () => {
                 <div className="md:col-span-2 lg:col-span-2 relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                   <Input
-                    placeholder="লোকেশন বা প্রোপার্টির নাম লিখুন..."
+                    placeholder={t('search.placeholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 transition-all duration-300 focus:ring-2 focus:ring-primary/20"
@@ -209,27 +211,27 @@ const ProductSearch = () => {
                 
                 <Select value={propertyType} onValueChange={setPropertyType}>
                   <SelectTrigger className="transition-all duration-300 hover:border-primary/50">
-                    <SelectValue placeholder="প্রোপার্টির ধরন" />
+                    <SelectValue placeholder={t('search.propertyType')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">সকল ধরনের</SelectItem>
-                    <SelectItem value="apartment">অ্যাপার্টমেন্ট</SelectItem>
-                    <SelectItem value="villa">ভিলা</SelectItem>
-                    <SelectItem value="commercial">কমার্শিয়াল</SelectItem>
-                    <SelectItem value="land">জমি</SelectItem>
+                    <SelectItem value="all">{t('search.allTypes')}</SelectItem>
+                    <SelectItem value="apartment">{t('search.apartment')}</SelectItem>
+                    <SelectItem value="villa">{t('search.villa')}</SelectItem>
+                    <SelectItem value="commercial">{t('search.commercial')}</SelectItem>
+                    <SelectItem value="land">{t('search.land')}</SelectItem>
                   </SelectContent>
                 </Select>
                 
                 <Select value={priceRange} onValueChange={setPriceRange}>
                   <SelectTrigger className="transition-all duration-300 hover:border-primary/50">
-                    <SelectValue placeholder="মূল্য পরিসীমা" />
+                    <SelectValue placeholder={t('search.priceRange')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">সকল মূল্য</SelectItem>
-                    <SelectItem value="0-50">৳০ - ৳৫০ লাখ</SelectItem>
-                    <SelectItem value="50-100">৳৫০ লাখ - ৳১ কোটি</SelectItem>
-                    <SelectItem value="100-200">৳১ কোটি - ৳২ কোটি</SelectItem>
-                    <SelectItem value="200+">৳২ কোটি+</SelectItem>
+                    <SelectItem value="all">{t('search.allPrices')}</SelectItem>
+                    <SelectItem value="0-50">{t('search.price.0-50')}</SelectItem>
+                    <SelectItem value="50-100">{t('search.price.50-100')}</SelectItem>
+                    <SelectItem value="100-200">{t('search.price.100-200')}</SelectItem>
+                    <SelectItem value="200+">{t('search.price.200+')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -238,7 +240,7 @@ const ProductSearch = () => {
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Filter className="w-4 h-4" />
-                    <span>ফিল্টার সক্রিয় আছে</span>
+                    <span>{t('search.filterActive')}</span>
                   </div>
                   <Button 
                     variant="outline" 
@@ -246,7 +248,7 @@ const ProductSearch = () => {
                     onClick={clearFilters}
                     className="transition-all duration-300 hover:bg-destructive hover:text-destructive-foreground"
                   >
-                    ফিল্টার পরিষ্কার করুন
+                    {t('search.clearFilters')}
                   </Button>
                 </div>
               )}
@@ -259,15 +261,15 @@ const ProductSearch = () => {
               {isLoading ? (
                 <div className="flex items-center gap-2">
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  খুঁজছি...
+                  {t('search.searching')}
                 </div>
               ) : (
-                `${filteredProperties.length}টি প্রোপার্টি পাওয়া গেছে`
+                `${filteredProperties.length}${t('search.resultsFound')}`
               )}
             </h2>
             {!isLoading && filteredProperties.length > 0 && (
               <Badge variant="secondary" className="text-sm">
-                {filteredProperties.length} ফলাফল
+                {filteredProperties.length} {t('search.results')}
               </Badge>
             )}
           </div>
@@ -307,10 +309,10 @@ const ProductSearch = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <Badge className="absolute top-4 right-4 bg-primary/90 backdrop-blur-sm border-0 text-primary-foreground">
-                      {property.type === 'apartment' && 'অ্যাপার্টমেন্ট'}
-                      {property.type === 'villa' && 'ভিলা'}
-                      {property.type === 'commercial' && 'কমার্শিয়াল'}
-                      {property.type === 'land' && 'জমি'}
+                      {property.type === 'apartment' && t('search.apartment')}
+                      {property.type === 'villa' && t('search.villa')}
+                      {property.type === 'commercial' && t('search.commercial')}
+                      {property.type === 'land' && t('search.land')}
                     </Badge>
                     <div className="absolute top-4 left-4 flex items-center gap-1 text-white bg-black/30 backdrop-blur-sm px-2 py-1 rounded-lg">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
@@ -337,11 +339,11 @@ const ProductSearch = () => {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Bed className="w-4 h-4" />
-                          <span>{property.bedrooms} বেডরুম</span>
+                          <span>{property.bedrooms} {t('search.bedrooms')}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Bath className="w-4 h-4" />
-                          <span>{property.bathrooms} বাথরুম</span>
+                          <span>{property.bathrooms} {t('search.bathrooms')}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Square className="w-4 h-4" />
@@ -353,12 +355,12 @@ const ProductSearch = () => {
                     {property.type === 'land' && (
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <Square className="w-4 h-4" />
-                        <span>এলাকা: {property.area}</span>
+                        <span>{t('search.area')}: {property.area}</span>
                       </div>
                     )}
                     
                     <Button className="w-full btn-premium group-hover:shadow-hover transition-all duration-300">
-                      বিস্তারিত দেখুন
+                      {t('search.viewDetails')}
                     </Button>
                   </CardContent>
                 </Card>
@@ -367,15 +369,15 @@ const ProductSearch = () => {
           ) : (
             <div className="text-center py-20 animate-fade-in">
               <div className="text-6xl mb-6 animate-bounce">🏠</div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">কোন প্রোপার্টি পাওয়া যায়নি</h3>
+              <h3 className="text-2xl font-bold mb-4 text-foreground">{t('search.noResults')}</h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                আপনার সার্চ অনুযায়ী কোন প্রোপার্টি খুঁজে পাওয়া যায়নি। ফিল্টার পরিবর্তন করে আবার চেষ্টা করুন।
+                {t('search.noResultsDescription')}
               </p>
               <Button 
                 onClick={clearFilters}
                 className="btn-premium hover:scale-105 transition-transform duration-300"
               >
-                ফিল্টার পরিষ্কার করুন
+                {t('search.clearFilters')}
               </Button>
             </div>
           )}

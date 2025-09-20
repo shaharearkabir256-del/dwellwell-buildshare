@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Home, Package, Settings, Info, Phone, Search } from 'lucide-react';
+import { LanguageToggle } from '@/components/LanguageToggle';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,12 +35,12 @@ const Navigation = () => {
   }, [isMobileMenuOpen]);
 
   const navItems = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/product/search', label: 'Search', icon: Search },
-    { path: '/product', label: 'Product', icon: Package },
-    { path: '/services', label: 'Services', icon: Settings },
+    { path: '/', label: t('nav.home'), icon: Home },
+    { path: '/product/search', label: t('nav.search'), icon: Search },
+    { path: '/product', label: t('nav.properties'), icon: Package },
+    { path: '/services', label: t('nav.services'), icon: Settings },
     { path: '/how-it-works', label: 'How It Works', icon: Info },
-    { path: '/contact', label: 'Contact', icon: Phone },
+    { path: '/contact', label: t('nav.contact'), icon: Phone },
   ];
 
   return (
@@ -71,8 +74,9 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Language Toggle and CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <LanguageToggle />
             <Link to="/contact">
               <Button className="btn-premium">
                 Get Started
@@ -118,11 +122,17 @@ const Navigation = () => {
                   <span className="text-lg font-medium">{item.label}</span>
                 </Link>
               ))}
+              
+              {/* Language Toggle in Mobile Menu */}
+              <div className="w-full max-w-sm animate-fade-in" style={{ animationDelay: `${navItems.length * 0.1}s` }}>
+                <LanguageToggle />
+              </div>
+              
               <Link 
                 to="/contact" 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full max-w-sm animate-fade-in"
-                style={{ animationDelay: `${navItems.length * 0.1}s` }}
+                style={{ animationDelay: `${(navItems.length + 1) * 0.1}s` }}
               >
                 <Button className="btn-premium w-full text-lg py-4">
                   Get Started

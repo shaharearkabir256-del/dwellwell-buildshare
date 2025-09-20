@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import heroImage from '@/assets/hero-home.jpg';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -27,15 +29,15 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fade-up">
-            Find or Build Your{' '}
+            {t('hero.title')}{' '}
             <span className="bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
-              Perfect Home
+              {t('hero.subtitle')}
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Connect with premium house sharing opportunities or create your dream home with our expert construction portfolio services
+            {t('hero.description')}
           </p>
 
           {/* CTA Buttons */}
@@ -44,7 +46,7 @@ const Hero = () => {
               onClick={() => scrollToSection('properties')}
               className="btn-premium text-lg px-8 py-4 min-w-[200px]"
             >
-              Browse Homes
+              {t('hero.cta.primary')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             
