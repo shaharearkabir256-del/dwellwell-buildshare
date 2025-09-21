@@ -20,6 +20,7 @@ const translations = {
     'nav.services': 'সেবা',
     'nav.contact': 'যোগাযোগ',
     'nav.search': 'খুঁজুন',
+    'nav.getStarted': 'শুরু করুন',
     
     // Hero Section
     'hero.title': 'HomeShare Pro',
@@ -100,6 +101,7 @@ const translations = {
     'nav.services': 'Services',
     'nav.contact': 'Contact',
     'nav.search': 'Search',
+    'nav.getStarted': 'Get Started',
     
     // Hero Section
     'hero.title': 'HomeShare Pro',

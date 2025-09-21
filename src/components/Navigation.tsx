@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Home, Package, Settings, Info, Phone, Search } from 'lucide-react';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { useTranslation } from '@/contexts/TranslationContext';
 
 const Navigation = () => {
@@ -74,12 +75,13 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Language Toggle and CTA Button */}
+          {/* Language Toggle, Theme Toggle and CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <LanguageToggle />
             <Link to="/contact">
               <Button className="btn-premium">
-                Get Started
+                {t('nav.getStarted')}
               </Button>
             </Link>
           </div>
@@ -123,8 +125,9 @@ const Navigation = () => {
                 </Link>
               ))}
               
-              {/* Language Toggle in Mobile Menu */}
-              <div className="w-full max-w-sm animate-fade-in" style={{ animationDelay: `${navItems.length * 0.1}s` }}>
+              {/* Theme and Language Toggle in Mobile Menu */}
+              <div className="w-full max-w-sm flex gap-4 animate-fade-in" style={{ animationDelay: `${navItems.length * 0.1}s` }}>
+                <ThemeToggle />
                 <LanguageToggle />
               </div>
               
@@ -135,7 +138,7 @@ const Navigation = () => {
                 style={{ animationDelay: `${(navItems.length + 1) * 0.1}s` }}
               >
                 <Button className="btn-premium w-full text-lg py-4">
-                  Get Started
+                  {t('nav.getStarted')}
                 </Button>
               </Link>
             </div>
