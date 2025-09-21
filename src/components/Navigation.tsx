@@ -25,13 +25,23 @@ const Navigation = () => {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      // Prevent touch scrolling on iOS
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
 
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -102,9 +112,9 @@ const Navigation = () => {
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="md:hidden fixed inset-0 z-[100] flex flex-col">
-            {/* Backdrop - prevents all interaction with content behind */}
+            {/* Backdrop with strong blur effect */}
             <div 
-              className="absolute inset-0 bg-background/98 backdrop-blur-lg"
+              className="absolute inset-0 bg-background/95 backdrop-blur-xl"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
