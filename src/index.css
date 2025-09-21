@@ -82,33 +82,55 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Professional dark theme colors */
+    --background: 225 25% 6%;
+    --foreground: 210 15% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 225 25% 8%;
+    --card-foreground: 210 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 225 25% 8%;
+    --popover-foreground: 210 15% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Enhanced primary colors for dark mode */
+    --primary: 220 91% 65%;
+    --primary-foreground: 225 25% 8%;
+    --primary-light: 220 91% 85%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Enhanced secondary colors for dark mode */
+    --secondary: 178 84% 45%;
+    --secondary-foreground: 225 25% 8%;
+    --secondary-light: 178 84% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 225 25% 15%;
+    --muted-foreground: 210 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Enhanced accent for dark mode */
+    --accent: 43 96% 65%;
+    --accent-foreground: 225 25% 8%;
+    --accent-light: 43 96% 85%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 210 15% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 225 25% 20%;
+    --input: 225 25% 15%;
+    --ring: 220 91% 65%;
+    
+    /* Enhanced gradients for dark mode */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.95), hsl(var(--secondary) / 0.85));
+    --gradient-card: linear-gradient(145deg, hsl(225 25% 15% / 0.8), hsl(225 25% 10% / 0.6));
+    
+    /* Dark mode glassmorphism */
+    --glass-bg: hsl(225 25% 10% / 0.8);
+    --glass-border: hsl(225 25% 25% / 0.3);
+    --glass-backdrop: blur(20px);
+    
+    /* Enhanced shadows for dark mode */
+    --shadow-premium: 0 25px 50px -12px hsl(0 0% 0% / 0.6);
+    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.3);
+    --shadow-hover: 0 20px 25px -5px hsl(var(--primary) / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

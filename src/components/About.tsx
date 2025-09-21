@@ -1,26 +1,29 @@
 import { Users, Home, Hammer, Award } from 'lucide-react';
+import { useTranslation } from '@/contexts/TranslationContext';
 
 const About = () => {
+  const { t } = useTranslation();
+  
   const features = [
     {
       icon: Users,
-      title: 'House Sharing Network',
-      description: 'Connect with verified homeowners and renters through our premium matching platform.'
+      title: t('about.feature1.title'),
+      description: t('about.feature1.description')
     },
     {
       icon: Home,
-      title: 'Quality Properties',
-      description: 'Access to carefully curated properties with modern amenities and prime locations.'
+      title: t('about.feature2.title'),
+      description: t('about.feature2.description')
     },
     {
       icon: Hammer,
-      title: 'Custom Home Building',
-      description: 'Professional construction services with 3D design previews and expert project management.'
+      title: t('about.feature3.title'),
+      description: t('about.feature3.description')
     },
     {
       icon: Award,
-      title: 'Premium Service',
-      description: 'Award-winning customer service with 24/7 support and satisfaction guarantee.'
+      title: t('about.feature4.title'),
+      description: t('about.feature4.description')
     }
   ];
 
@@ -30,15 +33,13 @@ const About = () => {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            About{' '}
+            {t('about.title')}{' '}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               Property BD
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We're revolutionizing the way people find homes and build their dreams. Our platform combines 
-            premium house sharing opportunities with expert construction services, creating a comprehensive 
-            solution for all your housing needs.
+            {t('about.description')}
           </p>
         </div>
 
@@ -66,22 +67,19 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-in-left">
               <h3 className="text-3xl font-bold mb-6">
-                Trusted by Thousands Across the Nation
+                {t('about.stats.title')}
               </h3>
               <p className="text-lg text-muted-foreground mb-8">
-                With over 5 years of experience in real estate and construction, 
-                we've helped thousands of clients find their perfect homes and 
-                build their dream properties. Our commitment to excellence and 
-                innovation sets us apart in the industry.
+                {t('about.stats.description')}
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <div className="text-2xl font-bold text-primary">5+</div>
-                  <div className="text-sm text-muted-foreground">Years Experience</div>
+                  <div className="text-sm text-muted-foreground">{t('about.stats.experience')}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-secondary">50+</div>
-                  <div className="text-sm text-muted-foreground">Cities Covered</div>
+                  <div className="text-sm text-muted-foreground">{t('about.stats.cities')}</div>
                 </div>
               </div>
             </div>

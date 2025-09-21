@@ -102,14 +102,24 @@ const Navigation = () => {
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="md:hidden fixed inset-0 z-[100] flex flex-col">
-            {/* Backdrop */}
+            {/* Backdrop - prevents all interaction with content behind */}
             <div 
-              className="absolute inset-0 bg-background/95 backdrop-blur-md"
+              className="absolute inset-0 bg-background/98 backdrop-blur-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
+            {/* Close button */}
+            <div className="absolute top-6 right-6 z-[110]">
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 rounded-full glass-card hover:bg-white/20 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
             {/* Menu Content */}
-            <div className="relative flex-1 flex flex-col justify-center items-center p-8 space-y-6 animate-fade-in">
+            <div className="relative flex-1 flex flex-col justify-center items-center p-8 space-y-6 animate-fade-in z-[105]">
               {navItems.map((item, index) => (
                 <Link
                   key={item.path}

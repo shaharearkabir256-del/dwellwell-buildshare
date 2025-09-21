@@ -56,7 +56,7 @@ const Hero = () => {
               className="btn-glass text-lg px-8 py-4 min-w-[200px] text-white border-white/30 hover:bg-white/20"
             >
               <Play className="mr-2 w-5 h-5" />
-              Start Building
+              {t('hero.button.building')}
             </Button>
           </div>
 
@@ -64,15 +64,15 @@ const Hero = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 animate-fade-up" style={{ animationDelay: '0.6s' }}>
             <div className="glass-card p-6 text-center">
               <div className="text-3xl font-bold text-accent mb-2">500+</div>
-              <div className="text-white/80">Premium Properties</div>
+              <div className="text-white/80">{t('hero.stats.properties')}</div>
             </div>
             <div className="glass-card p-6 text-center">
               <div className="text-3xl font-bold text-accent mb-2">200+</div>
-              <div className="text-white/80">Homes Built</div>
+              <div className="text-white/80">{t('hero.stats.homes')}</div>
             </div>
             <div className="glass-card p-6 text-center">
               <div className="text-3xl font-bold text-accent mb-2">98%</div>
-              <div className="text-white/80">Client Satisfaction</div>
+              <div className="text-white/80">{t('hero.stats.satisfaction')}</div>
             </div>
           </div>
         </div>

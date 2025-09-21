@@ -64,6 +64,25 @@ const translations = {
     // About
     'about.title': 'আমাদের সম্পর্কে',
     'about.subtitle': 'বাংলাদেশের বিশ্বস্ত প্রোপার্টি সমাধান',
+    'about.description': 'আমরা মানুষের বাড়ি খোঁজার এবং তাদের স্বপ্ন বাস্তবায়নের পদ্ধতিতে বিপ্লব এনেছি। আমাদের প্ল্যাটফর্ম প্রিমিয়াম হাউস শেয়ারিং সুযোগের সাথে বিশেষজ্ঞ নির্মাণ সেবা যুক্ত করে, আপনার সকল আবাসন চাহিদার জন্য একটি সম্পূর্ণ সমাধান তৈরি করে।',
+    'about.feature1.title': 'হাউস শেয়ারিং নেটওয়ার্ক',
+    'about.feature1.description': 'আমাদের প্রিমিয়াম ম্যাচিং প্ল্যাটফর্মের মাধ্যমে যাচাইকৃত বাড়ির মালিক এবং ভাড়াটেদের সাথে যোগাযোগ করুন।',
+    'about.feature2.title': 'মানসম্পন্ন প্রোপার্টি',
+    'about.feature2.description': 'আধুনিক সুবিধা এবং প্রধান অবস্থানসহ সাবধানে নির্বাচিত প্রোপার্টিগুলিতে অ্যাক্সেস।',
+    'about.feature3.title': 'কাস্টম হোম বিল্ডিং',
+    'about.feature3.description': '৩ডি ডিজাইন প্রিভিউ এবং বিশেষজ্ঞ প্রকল্প ব্যবস্থাপনাসহ পেশাদার নির্মাণ সেবা।',
+    'about.feature4.title': 'প্রিমিয়াম সেবা',
+    'about.feature4.description': '২৪/৭ সহায়তা এবং সন্তুষ্টির গ্যারান্টিসহ পুরস্কারপ্রাপ্ত গ্রাহক সেবা।',
+    'about.stats.title': 'সারাদেশে হাজারো মানুষের বিশ্বস্ত',
+    'about.stats.description': 'রিয়েল এস্টেট এবং নির্মাণে ৫ বছরের অভিজ্ঞতার সাথে, আমরা হাজারো ক্লায়েন্টকে তাদের নিখুঁত বাড়ি খুঁজে পেতে এবং তাদের স্বপ্নের সম্পত্তি নির্মাণে সহায়তা করেছি।',
+    'about.stats.experience': 'বছরের অভিজ্ঞতা',
+    'about.stats.cities': 'শহরে সেবা',
+    
+    // Hero Stats
+    'hero.stats.properties': 'প্রিমিয়াম প্রোপার্টি',
+    'hero.stats.homes': 'বাড়ি নির্মিত',
+    'hero.stats.satisfaction': 'ক্লায়েন্ট সন্তুষ্টি',
+    'hero.button.building': 'নির্মাণ শুরু করুন',
     
     // Contact
     'contact.title': 'যোগাযোগ করুন',
@@ -145,6 +164,25 @@ const translations = {
     // About
     'about.title': 'About Us',
     'about.subtitle': 'Bangladesh\'s Trusted Property Solutions',
+    'about.description': 'We\'re revolutionizing the way people find homes and build their dreams. Our platform combines premium house sharing opportunities with expert construction services, creating a comprehensive solution for all your housing needs.',
+    'about.feature1.title': 'House Sharing Network',
+    'about.feature1.description': 'Connect with verified homeowners and renters through our premium matching platform.',
+    'about.feature2.title': 'Quality Properties',
+    'about.feature2.description': 'Access to carefully curated properties with modern amenities and prime locations.',
+    'about.feature3.title': 'Custom Home Building',
+    'about.feature3.description': 'Professional construction services with 3D design previews and expert project management.',
+    'about.feature4.title': 'Premium Service',
+    'about.feature4.description': 'Award-winning customer service with 24/7 support and satisfaction guarantee.',
+    'about.stats.title': 'Trusted by Thousands Across the Nation',
+    'about.stats.description': 'With over 5 years of experience in real estate and construction, we\'ve helped thousands of clients find their perfect homes and build their dream properties.',
+    'about.stats.experience': 'Years Experience',
+    'about.stats.cities': 'Cities Covered',
+    
+    // Hero Stats
+    'hero.stats.properties': 'Premium Properties',
+    'hero.stats.homes': 'Homes Built',
+    'hero.stats.satisfaction': 'Client Satisfaction',
+    'hero.button.building': 'Start Building',
     
     // Contact
     'contact.title': 'Contact Us',
